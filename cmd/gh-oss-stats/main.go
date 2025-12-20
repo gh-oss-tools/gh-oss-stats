@@ -21,7 +21,7 @@ func main() {
 		userShort    = flag.String("u", "", "GitHub username (short)")
 		token        = flag.String("token", os.Getenv("GITHUB_TOKEN"), "GitHub token (default: $GITHUB_TOKEN)")
 		tokenShort   = flag.String("t", "", "GitHub token (short)")
-		includeLOC   = flag.Bool("include-loc", true, "Include LOC metrics")
+		includeLOC   = flag.Bool("include-loc", false, "Include LOC metrics")
 		includePRs   = flag.Bool("include-prs", false, "Include PR details")
 		minStars     = flag.Int("min-stars", 0, "Minimum repo stars")
 		maxPRs       = flag.Int("max-prs", 500, "Max PRs to fetch")

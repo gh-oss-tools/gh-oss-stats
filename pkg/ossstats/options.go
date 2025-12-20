@@ -18,7 +18,7 @@ func WithToken(token string) Option {
 }
 
 // WithLOC enables or disables fetching lines of code metrics (additions/deletions).
-// Default: true
+// Default: false
 func WithLOC(enabled bool) Option {
 	return func(c *Client) {
 		c.includeLOC = enabled
