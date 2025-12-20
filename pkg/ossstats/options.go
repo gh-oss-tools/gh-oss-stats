@@ -1,0 +1,100 @@
+package ossstats
+
+import (
+	"log"
+	"net/http"
+	"time"
+)
+
+// Logger is the interface for logging within the library.
+// Implementations can provide custom logging behavior.
+type Logger interface {
+	Printf(format string, v ...interface{})
+}
+
+// defaultLogger is a no-op logger that discards all log messages.
+type defaultLogger struct{}
+
+func (defaultLogger) Printf(format string, v ...interface{}) {
+	// No-op: discard logs by default
+}
+
+// Option is a functional option for configuring the Client.
+type Option func(*Client)
+
+// WithToken sets the GitHub Personal Access Token for authentication.
+// Required for reasonable rate limits (5,000/hour vs 60/hour unauthenticated).
+func WithToken(token string) Option {
+	return func(c *Client) {
+		c.token = token
+	}
+}
+
+// WithLOC enables or disables fetching lines of code metrics (additions/deletions).
+// Default: true
+func WithLOC(enabled bool) Option {
+	return func(c *Client) {
+		c.includeLOC = enabled
+	}
+}
+
+// WithPRDetails enables or disables including detailed PR information.
+// When enabled, includes a list of individual PR details for each contribution.
+// Default: false
+func WithPRDetails(enabled bool) Option {
+	return func(c *Client) {
+		c.includePRDetails = enabled
+	}
+}
+
+// WithMinStars filters repositories by minimum star count.
+// Only contributions to repositories with at least this many stars will be included.
+// Default: 0 (no filtering)
+func WithMinStars(stars int) Option {
+	return func(c *Client) {
+		c.minStars = stars
+	}
+}
+
+// WithMaxPRs limits the maximum number of PRs to fetch.
+// Useful for large contributors to avoid excessive API calls.
+// Default: 500
+func WithMaxPRs(max int) Option {
+	return func(c *Client) {
+		c.maxPRs = max
+	}
+}
+
+// WithTimeout sets the overall timeout for the entire operation.
+// Default: 5 minutes
+func WithTimeout(timeout time.Duration) Option {
+	return func(c *Client) {
+		c.timeout = timeout
+	}
+}
+
+// WithLogger sets a custom logger for the client.
+// The logger will receive informational messages about the operation progress.
+// Default: no-op logger that discards all messages
+func WithLogger(logger Logger) Option {
+	return func(c *Client) {
+		c.logger = logger
+	}
+}
+
+// WithHTTPClient sets a custom HTTP client.
+// Useful for testing or custom transport configuration.
+// Default: http.DefaultClient with timeout
+func WithHTTPClient(httpClient *http.Client) Option {
+	return func(c *Client) {
+		c.httpClient = httpClient
+	}
+}
+
+// WithVerbose enables verbose logging to the default logger.
+// This is a convenience option that sets up a standard logger.
+func WithVerbose() Option {
+	return func(c *Client) {
+		c.logger = log.Default()
+	}
+}
