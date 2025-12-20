@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"slices"
 	"sync"
 	"time"
 
@@ -55,6 +56,16 @@ func (c *Client) GetContributions(ctx context.Context, username string) (*Stats,
 
 	// Step 4: Apply filters
 	contributions = c.applyFilters(contributions)
+
+	slices.SortFunc(contributions, func(a, b Contribution) int {
+		if a.FirstContribution.Before(b.FirstContribution) {
+			return 1
+		}
+		if a.FirstContribution.After(b.FirstContribution) {
+			return -1
+		}
+		return 0
+	})
 
 	// Step 5: Calculate summary
 	summary := c.calculateSummary(contributions)
