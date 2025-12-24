@@ -22,6 +22,17 @@ Add OSS contribution badge to your github profile in few steps
 Done
 
 ### Workflow Configuration
+
+Samples
+
+| Style |  Dark Theme | Light Theme |
+|------------|------------|-------------|
+| Summary | ![Summary Dark](docs/badges/summary-dark.svg) | ![Summary Light](docs/badges/summary-light.svg) |
+| Compact | ![Compact Dark](docs/badges/compact-dark.svg) | ![Compact Light](docs/badges/compact-light.svg) |
+| Detailed | ![Detailed Dark](docs/badges/detailed-dark.svg) | ![Detailed Light](docs/badges/detailed-light.svg) |
+| Minimal | ![Minimal Dark](docs/badges/minimal-dark.svg) | ![Minimal Light](docs/badges/minimal-light.svg) |
+
+
 - Change Output Path
 You can change generated svg path in lines `39` and `43`
 
