@@ -21,41 +21,74 @@ A Go library + CLI tool that fetches a GitHub user's open source contributions t
 
 
 
-## Usage
-Add OSS contribution badge to your github profile in few steps
+## Quick Start
 
-1. Navigate to your github profile repo
-1. Create new file `.github/workflows/generate-oss-badge.yaml`
-3. Copy content of [.github/workflows/generate-oss-badge-sample.yaml](.github/workflows/generate-oss-badge-sample.yaml) and past it in newely created file (from step 2)
-4. Commit the changes
-5. Reference generated svg image in your `README.md` file
-Done
+Add an auto-updating OSS contribution badge to your GitHub profile in a few simple steps:
 
-### Workflow Configuration
+### 1. Create Your Profile Repository
+If you don't have one already, create a repository named `USERNAME/USERNAME` (replace USERNAME with your GitHub username). This is your special [profile repository](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme).
 
-#### Change Output Path
-You can change generated svg path in lines `39` and `43`
+### 2. Set Up the Workflow
+1. In your profile repository, create a new file: `.github/workflows/generate-oss-badge.yaml`
+2. Copy the content from [this sample workflow](.github/workflows/generate-oss-badge-sample.yaml) and paste it into the file
 
-#### Change Svg Style And Theme
-see [docs/badge/README.md](docs/badge/README.md) for all available options
+### 3. Commit and Wait
+Commit the workflow file. The badge will be generated automatically:
+- **First run:** Manually trigger via Actions tab, or wait for the scheduled time (Sundays at midnight)
+- **Updates:** Automatically every Sunday at midnight (customizable)
 
-#### How frequent workflow runs:
-You can do that at `line 4`
+### 4. Add Badge to Your Profile
+Add this line to your profile `README.md` where you want the badge to appear:
 
-Here is few options
-```yaml
-# Weekly (Sundays at midnight)
-- cron: '0 0 * * 0'  
-
-# Daily (midnight)
-- cron: '0 0 * * *' 
-
-# Every 6 hours
-- cron: '0 */6 * * *' 
-
-# Hourly
-- cron: '0 * * * *' 
+```markdown
+![OSS Contributions](oss-badge.svg)
 ```
+
+**Done!** Your badge will auto-update weekly. 🎉
+
+---
+
+## Customization
+
+### Change Badge Style or Theme
+
+Edit the workflow file (`.github/workflows/generate-oss-badge.yaml`) and modify these flags:
+
+```yaml
+--badge-style summary    # Options: summary, compact, detailed, minimal
+--badge-theme dark       # Options: dark, light
+```
+
+See all badge styles and examples in the [Badge Gallery](docs/badges/README.md).
+
+### Change Output Location
+
+In the workflow file, update the path `oss-badge.svg` in two places:
+1. The `gh-oss-stats` command's `--badge-output` flag
+2. The `git add` command
+
+Then update your README.md to reference the new path.
+
+### Change Update Frequency
+
+Modify the `cron` schedule in the workflow file:
+
+```yaml
+schedule:
+  - cron: '0 0 * * 0'  # Weekly (Sundays at midnight) - default
+```
+
+**Common schedules:**
+```yaml
+- cron: '0 0 * * *'      # Daily at midnight
+- cron: '0 */6 * * *'    # Every 6 hours
+- cron: '0 0 * * 1'      # Weekly on Mondays
+- cron: '0 0 1 * *'      # Monthly on the 1st
+```
+
+### Advanced Options
+
+For filtering, sorting, and other advanced options, see [docs/BADGES.md](docs/BADGES.md) and [docs/TECHNICAL.md](docs/TECHNICAL.md)
 
 
 ## Technical Documentation
