@@ -11,22 +11,6 @@ A Go library + CLI tool that fetches a GitHub user's open source contributions t
 - 🚦 **Rate Limit Handling**: Smart rate limit detection with exponential backoff
 - 📦 **Library-First Design**: Use as a Go library or standalone CLI
 
-## Installation
-
-### From Source
-
-```bash
-go install github.com/gh-oss-tools/gh-oss-stats/cmd/gh-oss-stats@latest
-```
-
-### Build Locally
-
-```bash
-git clone https://github.com/gh-oss-tools/gh-oss-stats.git
-cd gh-oss-stats
-go build -o gh-oss-stats ./cmd/gh-oss-stats
-```
-
 ## Usage
 
 ### CLI
@@ -184,9 +168,27 @@ func main() {
 }
 ```
 
-## GitHub Token
 
-### Quick Setup
+---
+
+## Installation
+
+### From Source
+
+```bash
+go install github.com/gh-oss-tools/gh-oss-stats/cmd/gh-oss-stats@latest
+```
+
+### Build Locally
+
+```bash
+git clone https://github.com/gh-oss-tools/gh-oss-stats.git
+cd gh-oss-stats
+go build -o gh-oss-stats ./cmd/gh-oss-stats
+```
+
+
+## GitHub Token
 
 **Required for non-trivial usage** due to GitHub's rate limits:
 - ❌ Without token: 60 requests/hour
