@@ -57,6 +57,11 @@ gh-oss-stats --version
 --version        Print version
 ```
 
+**Development:**
+```
+--debug          Use mock API client for local testing (no GitHub API calls)
+```
+
 **Badge Generation:**
 ```
 --badge              Generate SVG badge
@@ -108,6 +113,32 @@ gh-oss-stats --user mabd-dev \
   --badge-theme dark \
   --badge-output badge.svg
 ```
+
+### Local Development & Testing
+
+Use debug mode to test the tool locally without hitting GitHub API:
+
+```bash
+# Fast local testing with mock data (no token required)
+gh-oss-stats --user test-user --debug
+
+# Generate badge from mock data
+gh-oss-stats --user test-user --debug --badge --badge-output test-badge.svg
+
+# Test different badge styles with mock data
+gh-oss-stats --user test-user --debug \
+  --badge \
+  --badge-style detailed \
+  --badge-theme light \
+  --badge-output test-detailed.svg
+```
+
+**Debug Mode Benefits:**
+- ✅ No API rate limits
+- ✅ Instant results (<1 second)
+- ✅ No GitHub token required
+- ✅ Uses static mock data from `internal/github/mockResponses/`
+- ✅ Perfect for development and CI testing
 
 ### As a Library
 
@@ -175,13 +206,29 @@ func main() {
 ```
 
 
+## Prerequisites
+
+### For GitHub Actions (Recommended)
+✅ **No setup required!** GitHub Actions automatically provides a token with `${{ secrets.GITHUB_TOKEN }}`.
+
+### For Local CLI Usage
+You have two options:
+
+**Option 1: GitHub Token (for real data)**
+- Required for fetching your actual contribution data
+- See [TOKEN_SETUP.md](TOKEN_SETUP.md) for setup instructions
+
+**Option 2: Debug Mode (for testing)**
+- Use `--debug` flag for testing without a token
+- Uses mock data, perfect for development
+
 ## GitHub Token
 
 **Required for non-trivial usage** due to GitHub's rate limits:
 - ❌ Without token: 60 requests/hour
 - ✅ With token: 5,000 requests/hour
 
-📖 **Full setup guide:** See [docs/TOKEN_SETUP.md](docs/TOKEN_SETUP.md)
+📖 **Full setup guide:** See [TOKEN_SETUP.md](TOKEN_SETUP.md)
 
 ### Alternative: CLI Flag
 
@@ -231,8 +278,14 @@ gh-oss-stats/
 # Run tests
 go test ./...
 
+# Run tests with coverage
+go test -cover ./...
+
 # Build
 go build -o gh-oss-stats ./cmd/gh-oss-stats
+
+# Test locally with debug mode
+./gh-oss-stats --user test --debug
 
 # Lint (requires golangci-lint)
 golangci-lint run
