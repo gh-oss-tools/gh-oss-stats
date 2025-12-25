@@ -25,7 +25,7 @@ func BadgeThemeFromName(name string) (BadgeTheme, error) {
 	case "aurora glass":
 		return ThemeAuroraGlass, nil
 	}
-	err := fmt.Errorf("invalid badge theme: %s (must be: dark, light)", name)
+	err := fmt.Errorf("invalid badge theme: %s (must be: dark, light, aurora glass)", name)
 	return DefaultBadgeTheme, err
 }
 

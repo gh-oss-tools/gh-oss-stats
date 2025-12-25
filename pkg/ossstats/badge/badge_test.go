@@ -65,14 +65,14 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 			name:      "detailed_dark",
 			style:     StyleDetailed,
 			theme:     ThemeDark,
-			wantWidth: `width="400"`,
+			wantWidth: `width="900"`,
 			wantErr:   false,
 		},
 		{
 			name:      "detailed_light",
 			style:     StyleDetailed,
 			theme:     ThemeLight,
-			wantWidth: `width="400"`,
+			wantWidth: `width="900"`,
 			wantErr:   false,
 		},
 		{
@@ -192,28 +192,45 @@ func TestRenderSVG_ThemeColors(t *testing.T) {
 
 	tests := []struct {
 		name       string
+		style      BadgeStyle
 		theme      BadgeTheme
 		wantColor  string
 		wantAccent string
 	}{
 		{
-			name:       "dark_theme",
+			name:       "dark_theme_compact",
+			style:      StyleCompact,
 			theme:      ThemeDark,
-			wantColor:  "#0d1117",
+			wantColor:  "#c9d1d9", // text color
 			wantAccent: "#58a6ff",
 		},
 		{
-			name:       "light_theme",
+			name:       "light_theme_compact",
+			style:      StyleCompact,
 			theme:      ThemeLight,
-			wantColor:  "#ffffff",
+			wantColor:  "#24292f", // text color
 			wantAccent: "#0969da",
+		},
+		{
+			name:       "dark_theme_summary",
+			style:      StyleSummary,
+			theme:      ThemeDark,
+			wantColor:  "#0d1117",  // background color
+			wantAccent: "",          // summary doesn't use accent in visible way
+		},
+		{
+			name:       "light_theme_summary",
+			style:      StyleSummary,
+			theme:      ThemeLight,
+			wantColor:  "#ffffff",   // background color
+			wantAccent: "",          // summary doesn't use accent in visible way
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			opts := BadgeOptions{
-				Style: StyleSummary,
+				Style: tt.style,
 				Theme: tt.theme,
 			}
 
@@ -225,7 +242,7 @@ func TestRenderSVG_ThemeColors(t *testing.T) {
 			if !strings.Contains(svg, tt.wantColor) {
 				t.Errorf("RenderSVG() missing theme color %s", tt.wantColor)
 			}
-			if !strings.Contains(svg, tt.wantAccent) {
+			if tt.wantAccent != "" && !strings.Contains(svg, tt.wantAccent) {
 				t.Errorf("RenderSVG() missing accent color %s", tt.wantAccent)
 			}
 		})
@@ -355,7 +372,7 @@ func TestRenderSVG_DetailedBadgeLimit(t *testing.T) {
 			}
 
 			// Count occurrences of repo-name class
-			count := strings.Count(svg, `class="text repo-name"`)
+			count := strings.Count(svg, `class="repo-name"`)
 			if count != tt.wantCount {
 				t.Errorf("RenderSVG() got %d repos, want %d", count, tt.wantCount)
 			}

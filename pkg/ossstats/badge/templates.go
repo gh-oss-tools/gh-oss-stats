@@ -100,14 +100,14 @@ const compactTemplate = `<svg
       text {
         font-family: system-ui, -apple-system, BlinkMacSystemFont,
                      "Segoe UI", Helvetica, Arial, sans-serif;
-        fill: #ffffff;
+        fill: {{.Colors.Text}};
         font-size: 12px;
         font-weight: 700;
       }
 
       .card {
         fill: url(#badgeGradient);
-        stroke: rgba(255,255,255,0.15);
+        stroke: {{.Colors.Border}};
         stroke-width: 1;
         rx: 16;
       }
@@ -142,13 +142,15 @@ const minimalTemplate = `<svg
       text {
         font-family: system-ui, -apple-system, BlinkMacSystemFont,
                      "Segoe UI", Helvetica, Arial, sans-serif;
-        fill: #ffffff;
+        fill: {{.Colors.Text}};
         font-size: 12px;
         font-weight: 800;
       }
 
       .card {
         fill: url(#miniGradient);
+        stroke: {{.Colors.Border}};
+        stroke-width: 1;
         rx: 16;
       }
     </style>
@@ -172,8 +174,8 @@ const minimalTemplate = `<svg
 const detailedTemplate = `
 <svg
   width="900"
-  height="{{add 360 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
-  viewBox="0 0 900 {{add 360 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
+  height="{{add 278 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
+  viewBox="0 0 900 {{add 278 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
   aria-label="GitHub Open Source Contribution Stats">
@@ -277,7 +279,7 @@ const detailedTemplate = `
     x="0"
     y="0"
     width="900"
-    height="{{add 360 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
+    height="{{add 278 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
     rx="18"
     fill="var(--bg)"
   />
