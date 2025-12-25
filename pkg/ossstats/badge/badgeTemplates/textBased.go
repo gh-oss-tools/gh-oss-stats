@@ -2,10 +2,11 @@ package badgetemplates
 
 // textBasedDetailedTemplate is the SVG template for the Detailed badge style (400x320)
 const TextBasedDetailed = `
+	{{ $SVGHeight := add 300 (mul 56 (len .TopContributions)) }}
 	<svg
   width="720"
-  height="{{.SVGHeight}}"
-  viewBox="0 0 720 {{.SVGHeight}}"
+  height="{{$SVGHeight}}"
+  viewBox="0 0 720 {{$SVGHeight}}"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
   aria-label="Open Source Contributions">
@@ -81,7 +82,7 @@ const TextBasedDetailed = `
     x="0"
     y="0"
     width="720"
-    height="{{.SVGHeight}}"
+    height="{{$SVGHeight}}"
     rx="20"/>
 
   <!-- Header -->

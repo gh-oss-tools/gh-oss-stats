@@ -22,7 +22,6 @@ type templateData struct {
 	CompactText      string // For compact badge: "n projects | m PRs"
 	MinimalText      string // For minimal badge: "n Projects"
 	TopContributions []contributionData
-	SVGHeight        int
 }
 
 // contributionData holds formatted contribution data for templates
@@ -65,11 +64,6 @@ func RenderSVG(stats *ossstats.Stats, opts BadgeOptions) (string, error) {
 	if opts.Style == StyleDetailed {
 		data.TopContributions = getTopContributions(stats, opts.SortBy, opts.Limit)
 	}
-
-	repoCount := len(data.TopContributions)
-	repoHeight := repoCount * 56
-
-	data.SVGHeight = 260 + repoHeight + 40
 
 	// Select template based on style
 	tmplStr, err := getTemplateStr(opts.Style, opts.Variant)
