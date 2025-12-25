@@ -17,10 +17,10 @@ Track and display your merged PRs, commits, and contributions to external reposi
 
 | Style |  Output  |
 |------------|------------|
-| Summary | ![Summary Dark](docs/badges/summary-dark.svg) |
-| Detailed | ![Detailed Dark](docs/badges/detailed-dark.svg)  |
-| Compact | ![Compact Dark](docs/badges/compact-dark.svg)  |
-| Minimal | ![Minimal Dark](docs/badges/minimal-dark.svg)  |
+| Summary | ![Summary Dark](docs/badges/default-summary-dark.svg) |
+| Detailed | ![Detailed Dark](docs/badges/default-detailed-dark.svg)  |
+| Compact | ![Compact Dark](docs/badges/default-compact-dark.svg)  |
+| Minimal | ![Minimal Dark](docs/badges/default-minimal-dark.svg)  |
 
 Check [All Supported Themes](./docs/badges/BADGE_THEMES.md)
 

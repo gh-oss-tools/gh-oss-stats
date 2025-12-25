@@ -21,25 +21,25 @@ gh-oss-stats --user YOUR_USERNAME --badge \
 
 | Dark Theme | Light Theme |
 |------------|-------------|
-| ![Summary Dark](summary-dark.svg) | ![Summary Light](summary-light.svg) |
+| ![Summary Dark](default-summary-dark.svg) | ![Summary Light](default-summary-light.svg) |
 
 ### Compact Badges (280×28)
 
 | Dark Theme | Light Theme |
 |------------|-------------|
-| ![Compact Dark](compact-dark.svg) | ![Compact Light](compact-light.svg) |
+| ![Compact Dark](default-compact-dark.svg) | ![Compact Light](default-compact-light.svg) |
 
 ### Detailed Badges (400×320)
 
 | Dark Theme | Light Theme |
 |------------|-------------|
-| ![Detailed Dark](detailed-dark.svg) | ![Detailed Light](detailed-light.svg) |
+| ![Detailed Dark](default-detailed-dark.svg) | ![Detailed Light](default-detailed-light.svg) |
 
 ### Minimal Badges (120×28)
 
 | Dark Theme | Light Theme |
 |------------|-------------|
-| ![Minimal Dark](minimal-dark.svg) | ![Minimal Light](minimal-light.svg) |
+| ![Minimal Dark](default-minimal-dark.svg) | ![Minimal Light](default-minimal-light.svg) |
 
 
 Check [All Supported Themes](./BADGE_THEMES.md)
