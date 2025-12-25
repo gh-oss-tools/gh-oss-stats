@@ -63,6 +63,7 @@ func main() {
 		// Badge generation flags
 		generateBadge = flag.Bool("badge", false, "Generate SVG badge")
 		badgeStyle    = flag.String("badge-style", "summary", "Badge style: summary, compact, detailed, minimal")
+		badgeVariant  = flag.String("badge-variant", "default", "Badge variants: default, text-based")
 		badgeTheme    = flag.String("badge-theme", "dark", "Badge theme: dark, light, nord, dracula, ...")
 		badgeOutput   = flag.String("badge-output", "", "Badge output file (default: badge.svg)")
 		badgeSort     = flag.String("badge-sort", "prs", "Sort contributions by: prs, stars, commits (for detailed badge)")
@@ -170,7 +171,7 @@ func main() {
 
 	// Generate badge if requested
 	if *generateBadge {
-		if err := writeBadge(badgeStyle, badgeTheme, badgeOutput, badgeSort, badgeLimit, verbose, stats); err != nil {
+		if err := writeBadge(badgeStyle, badgeVariant, badgeTheme, badgeOutput, badgeSort, badgeLimit, verbose, stats); err != nil {
 			fmt.Fprintf(os.Stderr, "Error generating badge: %v\n", err)
 			os.Exit(1)
 		}
@@ -205,6 +206,7 @@ func writeStats(
 
 func writeBadge(
 	styleStr *string,
+	variantStr *string,
 	themeStr *string,
 	output *string,
 	sortStr *string,
@@ -222,6 +224,11 @@ func writeBadge(
 		fmt.Fprintf(os.Stderr, "\033[33mWarning: 'minimal' badge style will be removed in 0.3.0\n\033[0m")
 	}
 
+	variant, err := badge.BadgeVariantFromName(*variantStr)
+	if err != nil {
+		return err
+	}
+
 	theme, err := badge.BadgeThemeFromName(*themeStr)
 	if err != nil {
 		return err
@@ -234,10 +241,11 @@ func writeBadge(
 
 	// Create badge options
 	opts := badge.BadgeOptions{
-		Style:  style,
-		Theme:  theme,
-		SortBy: sortBy,
-		Limit:  *limit,
+		Style:   style,
+		Variant: variant,
+		Theme:   theme,
+		SortBy:  sortBy,
+		Limit:   *limit,
 	}
 
 	// Generate SVG
@@ -258,7 +266,7 @@ func writeBadge(
 	}
 
 	if *verbose {
-		fmt.Fprintf(os.Stderr, "Badge written to %s (%s/%s)\n", outputFile, style, theme)
+		fmt.Fprintf(os.Stderr, "Badge written to %s (%s/%s/%s)\n", outputFile, variant, style, theme)
 	}
 
 	return nil

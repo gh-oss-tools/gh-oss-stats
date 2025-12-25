@@ -8,6 +8,7 @@ import (
 	"text/template"
 
 	"github.com/mabd-dev/gh-oss-stats/pkg/ossstats"
+	bt "github.com/mabd-dev/gh-oss-stats/pkg/ossstats/badge/badgeTemplates"
 )
 
 // templateData holds the data passed to SVG templates
@@ -21,6 +22,7 @@ type templateData struct {
 	CompactText      string // For compact badge: "n projects | m PRs"
 	MinimalText      string // For minimal badge: "n Projects"
 	TopContributions []contributionData
+	SVGHeight        int
 }
 
 // contributionData holds formatted contribution data for templates
@@ -64,8 +66,13 @@ func RenderSVG(stats *ossstats.Stats, opts BadgeOptions) (string, error) {
 		data.TopContributions = getTopContributions(stats, opts.SortBy, opts.Limit)
 	}
 
+	repoCount := len(data.TopContributions)
+	repoHeight := repoCount * 56
+
+	data.SVGHeight = 260 + repoHeight + 40
+
 	// Select template based on style
-	tmplStr, err := opts.Style.TemplateStr()
+	tmplStr, err := getTemplateStr(opts.Style, opts.Variant)
 	if err != nil {
 		return "", err
 	}
@@ -142,4 +149,31 @@ func getTopContributions(stats *ossstats.Stats, sortBy SortBy, limit int) []cont
 	}
 
 	return result
+}
+
+func getTemplateStr(
+	style BadgeStyle,
+	variant BadgeVariant,
+) (string, error) {
+	switch variant {
+	case VariantDefault:
+		switch style {
+		case StyleSummary:
+			return bt.DefaultSummary, nil
+		case StyleCompact:
+			return bt.DefaultCompact, nil
+		case StyleDetailed:
+			return bt.DefaultDetailed, nil
+		case StyleMinimal:
+			return bt.DefaultMinimal, nil
+		}
+	case VariantTextBased:
+		switch style {
+		case StyleDetailed:
+			return bt.TextBasedDetailed, nil
+		}
+	}
+
+	err := fmt.Errorf("unsupported badge variant: %s, and style: %s combinations", variant, style)
+	return "", err
 }

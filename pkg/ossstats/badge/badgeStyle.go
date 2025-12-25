@@ -31,18 +31,3 @@ func BadgeStyleFromName(name string) (BadgeStyle, error) {
 	err := fmt.Errorf("invalid badge style: %s (must be: summary, compact, detailed, minimal)", name)
 	return DefualtBadgeStyle, err
 }
-
-func (s BadgeStyle) TemplateStr() (string, error) {
-	switch s {
-	case StyleSummary:
-		return summaryTemplate, nil
-	case StyleCompact:
-		return compactTemplate, nil
-	case StyleDetailed:
-		return detailedTemplate, nil
-	case StyleMinimal:
-		return minimalTemplate, nil
-	}
-
-	return "", fmt.Errorf("unsupported badge style: %s", s)
-}
