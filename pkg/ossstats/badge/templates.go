@@ -54,8 +54,8 @@ const summaryTemplate = `<svg
     </style>
 
     <linearGradient id="cardGradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.06)" />
-      <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+      <stop offset="0%" stop-color="{{.Colors.BackgroundAlt}}" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="{{.Colors.BackgroundAlt}}" stop-opacity="0.6" />
     </linearGradient>
   </defs>
 
@@ -100,14 +100,14 @@ const compactTemplate = `<svg
       text {
         font-family: system-ui, -apple-system, BlinkMacSystemFont,
                      "Segoe UI", Helvetica, Arial, sans-serif;
-        fill: #ffffff;
+        fill: {{.Colors.Text}};
         font-size: 12px;
         font-weight: 700;
       }
 
       .card {
         fill: url(#badgeGradient);
-        stroke: rgba(255,255,255,0.15);
+        stroke: {{.Colors.Border}};
         stroke-width: 1;
         rx: 16;
       }
@@ -142,13 +142,15 @@ const minimalTemplate = `<svg
       text {
         font-family: system-ui, -apple-system, BlinkMacSystemFont,
                      "Segoe UI", Helvetica, Arial, sans-serif;
-        fill: #ffffff;
+        fill: {{.Colors.Text}};
         font-size: 12px;
         font-weight: 800;
       }
 
       .card {
         fill: url(#miniGradient);
+        stroke: {{.Colors.Border}};
+        stroke-width: 1;
         rx: 16;
       }
     </style>
@@ -172,8 +174,8 @@ const minimalTemplate = `<svg
 const detailedTemplate = `
 <svg
   width="900"
-  height="{{add 360 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
-  viewBox="0 0 900 {{add 360 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
+  height="{{add 278 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
+  viewBox="0 0 900 {{add 278 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
   aria-label="GitHub Open Source Contribution Stats">
@@ -184,11 +186,12 @@ const detailedTemplate = `
   <style>
     :root {
       --bg: {{.Colors.Background}};
+      --bg-alt: {{.Colors.BackgroundAlt}};
       --text: {{.Colors.Text}};
       --text-muted: {{.Colors.TextSecondary}};
       --border: {{.Colors.Border}};
-      --card-top: rgba(255,255,255,0.06);
-      --card-bottom: rgba(255,255,255,0.02);
+      --accent: {{.Colors.Accent}};
+      --star: {{.Colors.Star}};
     }
 
     text {
@@ -260,13 +263,13 @@ const detailedTemplate = `
   <!-- ========================= -->
   <defs>
     <linearGradient id="cardGradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--card-top)" />
-      <stop offset="100%" stop-color="var(--card-bottom)" />
+      <stop offset="0%" stop-color="var(--bg-alt)" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="var(--bg-alt)" stop-opacity="0.6" />
     </linearGradient>
 
     <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
-      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+      <stop offset="0%" stop-color="var(--bg-alt)" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="var(--bg-alt)" stop-opacity="0" />
     </linearGradient>
   </defs>
 
@@ -277,7 +280,7 @@ const detailedTemplate = `
     x="0"
     y="0"
     width="900"
-    height="{{add 360 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
+    height="{{add 278 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
     rx="18"
     fill="var(--bg)"
   />

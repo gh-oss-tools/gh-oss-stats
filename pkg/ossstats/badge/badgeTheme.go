@@ -5,70 +5,135 @@ import (
 	"strings"
 )
 
-var DefaultBadgeTheme = ThemeDark
+var DefaultBadgeTheme = ThemeGithubDark
 
 // BadgeTheme represents the color scheme for the badge
 type BadgeTheme string
 
 const (
-	ThemeDark        BadgeTheme = "dark"  // Dark background, light text
-	ThemeLight       BadgeTheme = "light" // Light background, dark text
-	ThemeAuroraGlass BadgeTheme = "aurora glass"
+	ThemeGithubDark   BadgeTheme = "dark"
+	ThemeGithubLight  BadgeTheme = "light"
+	ThemeDracula      BadgeTheme = "dracula"
+	ThemeNord         BadgeTheme = "nord"
+	ThemeGruvboxDark  BadgeTheme = "gruvbox-dark"
+	ThemeGruvboxLight BadgeTheme = "gruvbox-light"
 )
 
 func BadgeThemeFromName(name string) (BadgeTheme, error) {
 	switch strings.ToLower(name) {
 	case "dark":
-		return ThemeDark, nil
+		return ThemeGithubDark, nil
 	case "light":
-		return ThemeLight, nil
-	case "aurora glass":
-		return ThemeAuroraGlass, nil
+		return ThemeGithubLight, nil
+	case "dracula":
+		return ThemeDracula, nil
+	case "nord":
+		return ThemeNord, nil
+	case "gruvbox-dark":
+		return ThemeGruvboxDark, nil
+	case "gruvbox-light":
+		return ThemeGruvboxLight, nil
 	}
-	err := fmt.Errorf("invalid badge theme: %s (must be: dark, light)", name)
+	err := fmt.Errorf("invalid badge theme: %s (must be: dark, light, dracula, nord)", name)
 	return DefaultBadgeTheme, err
 }
 
 // ThemeColors holds the color palette for a theme
 type ThemeColors struct {
-	Background    string
-	Text          string
-	TextSecondary string
-	Border        string
-	Accent        string
-}
+	// Backgrounds
+	Background    string // Main background
+	BackgroundAlt string // Cards, boxes, secondary areas
 
-// DefaultThemeDark returns the dark theme color palette
-var defaultThemeDark = ThemeColors{
-	Background:    "#0d1117",
-	Text:          "#c9d1d9",
-	TextSecondary: "#8b949e",
-	Border:        "#30363d",
-	Accent:        "#58a6ff",
+	// Text
+	Text          string // Primary text (headings, values)
+	TextSecondary string // Labels, muted text
+
+	// UI
+	Border string // Borders, dividers
+	Accent string // Primary brand color, highlights
+
+	// Semantic (for stats)
+	Positive string // Additions, success, growth
+	Negative string // Deletions, errors
+	Star     string // Star counts (optional, can default to Accent)
 }
 
 // GetThemeColors returns the color palette for a given theme
 func GetThemeColors(theme BadgeTheme) ThemeColors {
 	switch theme {
-	case ThemeLight:
+	case ThemeGithubLight:
 		return ThemeColors{
 			Background:    "#ffffff",
-			Text:          "#24292f",
-			TextSecondary: "#57606a",
+			BackgroundAlt: "#f6f8fa",
+			Text:          "#1f2328",
+			TextSecondary: "#656d76",
 			Border:        "#d0d7de",
 			Accent:        "#0969da",
+			Positive:      "#1a7f37",
+			Negative:      "#cf222e",
+			Star:          "#9a6700",
 		}
-	case ThemeDark:
-		return defaultThemeDark
-	case ThemeAuroraGlass:
+	case ThemeDracula:
 		return ThemeColors{
-			Background:    "#0b1020", // deep blue-black
-			Text:          "#e6edf3", // soft white
-			TextSecondary: "#9aa4b2", // muted gray-blue
-			Border:        "#1f2a44", // cool blue border
-			Accent:        "#7dd3fc", // icy blue (primary accent)
+			Background:    "#282a36",
+			BackgroundAlt: "#44475a",
+			Text:          "#f8f8f2",
+			TextSecondary: "#6272a4",
+			Border:        "#44475a",
+			Accent:        "#bd93f9",
+			Positive:      "#50fa7b",
+			Negative:      "#ff5555",
+			Star:          "#f1fa8c",
+		}
+	case ThemeNord:
+		return ThemeColors{
+			Background:    "#2e3440",
+			BackgroundAlt: "#3b4252",
+			Text:          "#d8dee9",
+			TextSecondary: "#81a1c1",
+			Border:        "#4c566a",
+			Accent:        "#88c0d0",
+			Positive:      "#a3be8c",
+			Negative:      "#bf616a",
+			Star:          "#ebcb8b",
+		}
+	case ThemeGruvboxDark:
+		return ThemeColors{
+			Background:    "#282828",
+			BackgroundAlt: "#3c3836",
+			Text:          "#ebdbb2",
+			TextSecondary: "#a89984",
+			Border:        "#3c3836",
+			Accent:        "#458588",
+			Positive:      "#98971a",
+			Negative:      "#cc241d",
+			Star:          "#d79921",
+		}
+	case ThemeGruvboxLight:
+		return ThemeColors{
+			Background:    "#fbf1c7",
+			BackgroundAlt: "#ebdbb2",
+			Text:          "#3c3836",
+			TextSecondary: "#7c6f64",
+			Border:        "#ebdbb2",
+			Accent:        "#458588",
+			Positive:      "#98971a",
+			Negative:      "#cc241d",
+			Star:          "#cc241d",
 		}
 	default:
-		return defaultThemeDark
+		// Github dark
+		return ThemeColors{
+			Background:    "#0d1117",
+			BackgroundAlt: "#161b22",
+			Text:          "#e6edf3",
+			TextSecondary: "#8b949e",
+			Border:        "#30363d",
+			Accent:        "#58a6ff",
+			Positive:      "#3fb950",
+			Negative:      "#f85149",
+			Star:          "#e3b341",
+		}
+
 	}
 }

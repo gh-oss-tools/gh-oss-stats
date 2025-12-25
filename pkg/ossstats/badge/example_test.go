@@ -23,7 +23,7 @@ func ExampleRenderSVG_summary() {
 
 	opts := badge.BadgeOptions{
 		Style: badge.StyleSummary,
-		Theme: badge.ThemeDark,
+		Theme: badge.ThemeGithubDark,
 	}
 
 	svg, err := badge.RenderSVG(stats, opts)
@@ -33,7 +33,7 @@ func ExampleRenderSVG_summary() {
 	}
 
 	fmt.Printf("Generated summary badge (%d bytes)\n", len(svg))
-	// Output: Generated summary badge (1435 bytes)
+	// Output: Generated summary badge (1897 bytes)
 }
 
 func ExampleRenderSVG_compact() {
@@ -49,7 +49,7 @@ func ExampleRenderSVG_compact() {
 
 	opts := badge.BadgeOptions{
 		Style: badge.StyleCompact,
-		Theme: badge.ThemeLight,
+		Theme: badge.ThemeGithubLight,
 	}
 
 	svg, err := badge.RenderSVG(stats, opts)
@@ -59,7 +59,7 @@ func ExampleRenderSVG_compact() {
 	}
 
 	fmt.Printf("Generated compact badge (%d bytes)\n", len(svg))
-	// Output: Generated compact badge (766 bytes)
+	// Output: Generated compact badge (958 bytes)
 }
 
 func ExampleRenderSVG_minimal() {
@@ -72,7 +72,7 @@ func ExampleRenderSVG_minimal() {
 
 	opts := badge.BadgeOptions{
 		Style: badge.StyleMinimal,
-		Theme: badge.ThemeDark,
+		Theme: badge.ThemeGithubDark,
 	}
 
 	svg, err := badge.RenderSVG(stats, opts)
@@ -82,7 +82,7 @@ func ExampleRenderSVG_minimal() {
 	}
 
 	fmt.Printf("Generated minimal badge (%d bytes)\n", len(svg))
-	// Output: Generated minimal badge (448 bytes)
+	// Output: Generated minimal badge (920 bytes)
 }
 
 func ExampleRenderSVG_detailed() {
@@ -103,7 +103,7 @@ func ExampleRenderSVG_detailed() {
 
 	opts := badge.BadgeOptions{
 		Style:  badge.StyleDetailed,
-		Theme:  badge.ThemeDark,
+		Theme:  badge.ThemeGithubDark,
 		SortBy: badge.SortByPRs,
 		Limit:  3,
 	}
@@ -115,5 +115,5 @@ func ExampleRenderSVG_detailed() {
 	}
 
 	fmt.Printf("Generated detailed badge (%d bytes)\n", len(svg))
-	// Output: Generated detailed badge (2158 bytes)
+	// Output: Generated detailed badge (5413 bytes)
 }

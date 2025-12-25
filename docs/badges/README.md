@@ -42,6 +42,8 @@ gh-oss-stats --user YOUR_USERNAME --badge \
 | ![Minimal Dark](minimal-dark.svg) | ![Minimal Light](minimal-light.svg) |
 
 
+Check [All Supported Themes](./BADGE_THEMES.md)
+
 ---
 
 ## Advanced Options
@@ -85,22 +87,13 @@ gh-oss-stats --user mabd-dev \
   --badge --badge-output badge.svg
 ```
 
-## Theme Comparison
-
-| Feature | Dark Theme | Light Theme |
-|---------|------------|-------------|
-| Background | `#0d1117` (GitHub dark) | `#ffffff` (white) |
-| Text | `#c9d1d9` (light gray) | `#24292f` (dark gray) |
-| Accent | `#58a6ff` (GitHub blue) | `#0969da` (GitHub blue) |
-| Use Case | Dark mode sites, modern look | Light mode sites, traditional |
-
 ## All CLI Flags
 
 | Flag | Type | Default | Description |
 |------|------|---------|-------------|
 | `--badge` | bool | `false` | Enable badge generation |
 | `--badge-style` | string | `"summary"` | Badge style: summary, compact, detailed, minimal |
-| `--badge-theme` | string | `"dark"` | Color theme: dark, light |
+| `--badge-theme` | string | `"dark"` | Color theme: dark, light, nord, dracula, ... |
 | `--badge-output` | string | `"badge.svg"` | Output file path |
 | `--badge-sort` | string | `"prs"` | Sort by: prs, stars, commits (detailed only) |
 | `--badge-limit` | int | `5` | Max contributions shown (detailed only) |
