@@ -12,10 +12,10 @@
   <!-- ========================= -->
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #1f2328;
-      --text-muted: #656d76;
-      --border: #d0d7de;
+      --bg: #282a36;
+      --text: #f8f8f2;
+      --text-muted: #6272a4;
+      --border: #44475a;
       --card-top: rgba(255,255,255,0.06);
       --card-bottom: rgba(255,255,255,0.02);
     }

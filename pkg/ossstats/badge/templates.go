@@ -54,8 +54,8 @@ const summaryTemplate = `<svg
     </style>
 
     <linearGradient id="cardGradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.06)" />
-      <stop offset="100%" stop-color="rgba(255,255,255,0.02)" />
+      <stop offset="0%" stop-color="{{.Colors.BackgroundAlt}}" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="{{.Colors.BackgroundAlt}}" stop-opacity="0.6" />
     </linearGradient>
   </defs>
 
@@ -186,11 +186,12 @@ const detailedTemplate = `
   <style>
     :root {
       --bg: {{.Colors.Background}};
+      --bg-alt: {{.Colors.BackgroundAlt}};
       --text: {{.Colors.Text}};
       --text-muted: {{.Colors.TextSecondary}};
       --border: {{.Colors.Border}};
-      --card-top: rgba(255,255,255,0.06);
-      --card-bottom: rgba(255,255,255,0.02);
+      --accent: {{.Colors.Accent}};
+      --star: {{.Colors.Star}};
     }
 
     text {
@@ -262,13 +263,13 @@ const detailedTemplate = `
   <!-- ========================= -->
   <defs>
     <linearGradient id="cardGradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="var(--card-top)" />
-      <stop offset="100%" stop-color="var(--card-bottom)" />
+      <stop offset="0%" stop-color="var(--bg-alt)" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="var(--bg-alt)" stop-opacity="0.6" />
     </linearGradient>
 
     <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgba(255,255,255,0.08)" />
-      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+      <stop offset="0%" stop-color="var(--bg-alt)" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="var(--bg-alt)" stop-opacity="0" />
     </linearGradient>
   </defs>
 

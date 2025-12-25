@@ -27,26 +27,26 @@
       .title {
         font-size: 18px;
         font-weight: 800;
-        fill: #24292f;
+        fill: #1f2328;
         letter-spacing: -0.3px;
       }
 
       .subtitle {
         font-size: 12px;
-        fill: #57606a;
+        fill: #656d76;
       }
 
       .label {
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        fill: #57606a;
+        fill: #656d76;
       }
 
       .value {
         font-size: 26px;
         font-weight: 800;
-        fill: #24292f;
+        fill: #1f2328;
       }
     </style>
 

@@ -28,7 +28,7 @@ func BadgeThemeFromName(name string) (BadgeTheme, error) {
 	case "nord":
 		return ThemeNord, nil
 	}
-	err := fmt.Errorf("invalid badge theme: %s (must be: dark, light, aurora glass)", name)
+	err := fmt.Errorf("invalid badge theme: %s (must be: dark, light, dracula, nord)", name)
 	return DefaultBadgeTheme, err
 }
 
@@ -84,12 +84,12 @@ func GetThemeColors(theme BadgeTheme) ThemeColors {
 			Background:    "#2e3440",
 			BackgroundAlt: "#3b4252",
 			Text:          "#d8dee9",
-			TextSecondary: "#",
-			Border:        "#",
-			Accent:        "#",
-			Positive:      "#",
-			Negative:      "#",
-			Star:          "#",
+			TextSecondary: "#81a1c1",
+			Border:        "#4c566a",
+			Accent:        "#88c0d0",
+			Positive:      "#a3be8c",
+			Negative:      "#bf616a",
+			Star:          "#ebcb8b",
 		}
 	default:
 		// Github dark

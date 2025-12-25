@@ -13,7 +13,7 @@
   <style>
     :root {
       --bg: #0d1117;
-      --text: #c9d1d9;
+      --text: #e6edf3;
       --text-muted: #8b949e;
       --border: #30363d;
       --card-top: rgba(255,255,255,0.06);

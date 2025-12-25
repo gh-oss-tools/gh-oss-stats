@@ -14,12 +14,12 @@
       }
 
       .bg {
-        fill: #0d1117;
+        fill: #282a36;
       }
 
       .card {
         fill: url(#cardGradient);
-        stroke: #30363d;
+        stroke: #44475a;
         stroke-width: 1;
         rx: 14;
       }
@@ -27,26 +27,26 @@
       .title {
         font-size: 18px;
         font-weight: 800;
-        fill: #e6edf3;
+        fill: #f8f8f2;
         letter-spacing: -0.3px;
       }
 
       .subtitle {
         font-size: 12px;
-        fill: #8b949e;
+        fill: #6272a4;
       }
 
       .label {
         font-size: 11px;
         text-transform: uppercase;
         letter-spacing: 0.08em;
-        fill: #8b949e;
+        fill: #6272a4;
       }
 
       .value {
         font-size: 26px;
         font-weight: 800;
-        fill: #e6edf3;
+        fill: #f8f8f2;
       }
     </style>
 

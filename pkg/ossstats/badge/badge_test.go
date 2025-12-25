@@ -89,6 +89,20 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 			wantWidth: `width="120"`,
 			wantErr:   false,
 		},
+		{
+			name:      "summary_dracula",
+			style:     StyleSummary,
+			theme:     ThemeDracula,
+			wantWidth: `width="400"`,
+			wantErr:   false,
+		},
+		{
+			name:      "compact_nord",
+			style:     StyleCompact,
+			theme:     ThemeNord,
+			wantWidth: `width="280"`,
+			wantErr:   false,
+		},
 	}
 
 	for _, tt := range tests {
@@ -201,14 +215,14 @@ func TestRenderSVG_ThemeColors(t *testing.T) {
 			name:       "dark_theme_compact",
 			style:      StyleCompact,
 			theme:      ThemeDark,
-			wantColor:  "#c9d1d9", // text color
+			wantColor:  "#e6edf3", // text color
 			wantAccent: "#58a6ff",
 		},
 		{
 			name:       "light_theme_compact",
 			style:      StyleCompact,
 			theme:      ThemeLight,
-			wantColor:  "#24292f", // text color
+			wantColor:  "#1f2328", // text color
 			wantAccent: "#0969da",
 		},
 		{
@@ -516,6 +530,18 @@ func TestGetThemeColors(t *testing.T) {
 			theme:          ThemeLight,
 			wantBackground: "#ffffff",
 			wantAccent:     "#0969da",
+		},
+		{
+			name:           "dracula_theme",
+			theme:          ThemeDracula,
+			wantBackground: "#282a36",
+			wantAccent:     "#bd93f9",
+		},
+		{
+			name:           "nord_theme",
+			theme:          ThemeNord,
+			wantBackground: "#2e3440",
+			wantAccent:     "#88c0d0",
 		},
 		{
 			name:           "unknown_theme_defaults_to_dark",
