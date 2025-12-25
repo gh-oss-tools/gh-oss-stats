@@ -218,6 +218,10 @@ func writeBadge(
 		return err
 	}
 
+	if style == badge.StyleMinimal {
+		fmt.Fprintf(os.Stderr, "\033[33mWarning: 'minimal' badge style will be removed in 0.3.0\n\033[0m")
+	}
+
 	theme, err := badge.BadgeThemeFromName(*themeStr)
 	if err != nil {
 		return err
