@@ -66,7 +66,7 @@ gh-oss-stats --version
 ```
 --badge              Generate SVG badge
 --badge-style        Badge style: summary, compact, detailed, minimal (default: summary)
---badge-theme        Badge theme: dark, light (default: dark)
+--badge-theme        Badge theme: dark, light, nord, dracula, ... (default: dark)
 --badge-output       Badge output file (default: badge.svg)
 --badge-sort         Sort contributions by: prs, stars, commits (default: prs)
 --badge-limit        Number of contributions to show in detailed badge (default: 5)

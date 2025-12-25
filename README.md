@@ -11,7 +11,7 @@ Track and display your merged PRs, commits, and contributions to external reposi
 - 🔍 **External Contribution Tracking** - Discovers all your merged PRs to repos you don't own
 - 📊 **Comprehensive Stats** - Total PRs, commits, lines of code, and repository stars
 - ⭐ **Smart Filtering** - Filter by minimum stars, exclude organizations
-- 🎭 **Dark & Light Themes** - Match your profile's aesthetic
+- 🎭 6 **Color Themes** - Match your profile's aesthetic
 - 📦 **Developer-Friendly** - Use as a Go library or standalone CLI, outputs JSON
 
 
@@ -61,7 +61,7 @@ Edit the workflow file (`.github/workflows/generate-oss-badge.yaml`) and modify 
 
 ```yaml
 --badge-style summary    # Options: summary, compact, detailed, minimal
---badge-theme dark       # Options: dark, light
+--badge-theme dark       # Options: dark, light, nord, dracula, etc...
 ```
 
 See all badge styles and examples in the [Badge Gallery](docs/badges/README.md).
