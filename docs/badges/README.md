@@ -17,32 +17,32 @@ gh-oss-stats --user YOUR_USERNAME --badge \
 
 ## Badge Previews
 
-### Summary Badges (400×200)
+#### Summary Badges (400×200)
 
 | Dark Theme | Light Theme |
 |------------|-------------|
 | ![Summary Dark](default-summary-dark.svg) | ![Summary Light](default-summary-light.svg) |
 
-### Compact Badges (280×28)
+#### Compact Badges (280×28)
 
 | Dark Theme | Light Theme |
 |------------|-------------|
 | ![Compact Dark](default-compact-dark.svg) | ![Compact Light](default-compact-light.svg) |
 
-### Detailed Badges (400×320)
+#### Detailed Badges (400×320)
 
 | Dark Theme | Light Theme |
 |------------|-------------|
 | ![Detailed Dark](default-detailed-dark.svg) | ![Detailed Light](default-detailed-light.svg) |
 
-### Minimal Badges (120×28)
+#### Minimal Badges (120×28)
 
 | Dark Theme | Light Theme |
 |------------|-------------|
 | ![Minimal Dark](default-minimal-dark.svg) | ![Minimal Light](default-minimal-light.svg) |
 
 
-Multiple Variants Support
+### Multiple Variants Support
 
 | Default Variant |  Text Based Variant  |
 |------------|------------|

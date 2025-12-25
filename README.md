@@ -23,7 +23,7 @@ Track and display your merged PRs, commits, and contributions to external reposi
 | Minimal | ![Minimal Dark](docs/badges/default-minimal-dark.svg)  |
 
 
-Multiple Variants Support
+### Multiple Variants Support
 
 | Default Variant |  Text Based Variant  |
 |------------|------------|
