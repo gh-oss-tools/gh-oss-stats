@@ -1,14 +1,38 @@
-<svg width="120" height="28" xmlns="http://www.w3.org/2000/svg">
+<svg
+  width="120"
+  height="32"
+  viewBox="0 0 120 32"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="OSS">
+
   <defs>
     <style>
-      .bg { fill: #0969da; }
-      .text { fill: #ffffff; font-family: Verdana, Geneva, DejaVu Sans, sans-serif; font-size: 11px; font-weight: 600; }
+      text {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                     "Segoe UI", Helvetica, Arial, sans-serif;
+        fill: #ffffff;
+        font-size: 12px;
+        font-weight: 800;
+      }
+
+      .card {
+        fill: url(#miniGradient);
+        rx: 16;
+      }
     </style>
+
+    <linearGradient id="miniGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0969da" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#0969da" stop-opacity="0.75"/>
+    </linearGradient>
   </defs>
-  
+
   <!-- Background -->
-  <rect class="bg" x="0" y="0" width="120" height="28" rx="3"/>
-  
+  <rect class="card" x="0" y="0" width="120" height="32"/>
+
   <!-- Text -->
-  <text class="text" x="60" y="18" text-anchor="middle">42 Projects</text>
+  <text x="60" y="21" text-anchor="middle">
+    7 Projects
+  </text>
 </svg>

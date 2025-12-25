@@ -1,20 +1,40 @@
-<svg width="280" height="28" xmlns="http://www.w3.org/2000/svg">
+<svg
+  width="280"
+  height="32"
+  viewBox="0 0 280 32"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="OSS Contributions">
+
   <defs>
     <style>
-      .bg-left { fill: #8b949e; }
-      .bg-right { fill: #58a6ff; }
-      .text { fill: #ffffff; font-family: Verdana, Geneva, DejaVu Sans, sans-serif; font-size: 11px; font-weight: 600; }
+      text {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                     "Segoe UI", Helvetica, Arial, sans-serif;
+        fill: #ffffff;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .card {
+        fill: url(#badgeGradient);
+        stroke: rgba(255,255,255,0.15);
+        stroke-width: 1;
+        rx: 16;
+      }
     </style>
+
+    <linearGradient id="badgeGradient" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#58a6ff" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#58a6ff" stop-opacity="0.75"/>
+    </linearGradient>
   </defs>
-  
-  <!-- Left section (label) -->
-  <rect class="bg-left" x="0" y="0" width="160" height="28" rx="3"/>
-  
-  <!-- Right section (value) -->
-  <rect class="bg-right" x="160" y="0" width="120" height="28" rx="3"/>
-  <rect class="bg-right" x="160" y="0" width="3" height="28"/>
-  
+
+  <!-- Background -->
+  <rect class="card" x="0.5" y="0.5" width="279" height="31"/>
+
   <!-- Text -->
-  <text class="text" x="80" y="18" text-anchor="middle">OSS Contributions</text>
-  <text class="text" x="220" y="18" text-anchor="middle">42 projects | 1.6K PRs</text>
+  <text x="140" y="21" text-anchor="middle">
+    OSS · 7 projects | 17 PRs
+  </text>
 </svg>
