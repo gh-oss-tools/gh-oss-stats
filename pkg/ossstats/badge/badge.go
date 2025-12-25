@@ -38,7 +38,7 @@ func RenderSVG(stats *ossstats.Stats, opts BadgeOptions) (string, error) {
 
 	// Set defaults
 	if opts.SortBy == "" {
-		opts.SortBy = SortByPRs
+		opts.SortBy = DefaultSortBy
 	}
 	if opts.Limit == 0 {
 		opts.Limit = 5
@@ -65,24 +65,18 @@ func RenderSVG(stats *ossstats.Stats, opts BadgeOptions) (string, error) {
 	}
 
 	// Select template based on style
-	var tmplStr string
-	switch opts.Style {
-	case StyleSummary:
-		tmplStr = summaryTemplate
-	case StyleCompact:
-		tmplStr = compactTemplate
-	case StyleDetailed:
-		tmplStr = detailedTemplate
-	case StyleMinimal:
-		tmplStr = minimalTemplate
-	default:
-		return "", fmt.Errorf("unsupported badge style: %s", opts.Style)
+	tmplStr, err := opts.Style.TemplateStr()
+	if err != nil {
+		return "", err
 	}
 
 	// Parse and execute template with custom functions
 	tmpl, err := template.New("badge").Funcs(template.FuncMap{
 		"add": func(a, b int) int { return a + b },
+		"sub": func(a, b int) int { return a - b },
 		"mul": func(a, b int) int { return a * b },
+		"mod": func(a, b int) int { return a % b },
+		"div": func(a, b int) int { return a / b },
 	}).Parse(tmplStr)
 	if err != nil {
 		return "", fmt.Errorf("failed to parse template: %w", err)
