@@ -42,7 +42,7 @@ gh-oss-stats --user YOUR_USERNAME --badge \
 | ![Minimal Dark](minimal-dark.svg) | ![Minimal Light](minimal-light.svg) |
 
 
-see [All supported themes here](./BADGE_THEMES.md)
+Check [All Supported Themes](./BADGE_THEMES.md)
 
 ---
 
