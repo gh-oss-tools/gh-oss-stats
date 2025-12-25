@@ -73,6 +73,7 @@ func RenderSVG(stats *ossstats.Stats, opts BadgeOptions) (string, error) {
 	// Parse and execute template with custom functions
 	tmpl, err := template.New("badge").Funcs(template.FuncMap{
 		"add": func(a, b int) int { return a + b },
+		"sub": func(a, b int) int { return a - b },
 		"mul": func(a, b int) int { return a * b },
 		"mod": func(a, b int) int { return a % b },
 		"div": func(a, b int) int { return a / b },
