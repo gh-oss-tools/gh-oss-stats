@@ -25,10 +25,9 @@ Track and display your merged PRs, commits, and contributions to external reposi
 
 Multiple Variants Support
 
-| Variant |  Output  |
+| Defailt Variant |  Text Based Variant  |
 |------------|------------|
-| Default | ![Default Detailed Dark](docs/badges/default-detailed-dark.svg) |
-| Text Based | ![Text Based Detailed Dark](docs/badges/text-based-detailed-dark.svg)  |
+| ![Default Detailed Dark](docs/badges/default-detailed-dark.svg) | ![Text Based Detailed Dark](docs/badges/text-based-detailed-dark.svg) |
 
 
 Check [All Combos](./docs/badges/BADGE_THEMES.md)

@@ -44,10 +44,9 @@ gh-oss-stats --user YOUR_USERNAME --badge \
 
 Multiple Variants Support
 
-| Variant |  Output  |
+| Defailt Variant |  Text Based Variant  |
 |------------|------------|
-| Default | ![Default Detailed Dark](default-detailed-dark.svg) |
-| Text Based | ![Text Based Detailed Dark](text-based-detailed-dark.svg)  |
+| ![Default Detailed Dark](default-detailed-dark.svg) | ![Text Based Detailed Dark](text-based-detailed-dark.svg) |
 
 
 Check [All Combos](./BADGE_THEMES.md)
