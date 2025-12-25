@@ -25,7 +25,7 @@ Track and display your merged PRs, commits, and contributions to external reposi
 
 Multiple Variants Support
 
-| Defailt Variant |  Text Based Variant  |
+| Default Variant |  Text Based Variant  |
 |------------|------------|
 | ![Default Detailed Dark](docs/badges/default-detailed-dark.svg) | ![Text Based Detailed Dark](docs/badges/text-based-detailed-dark.svg) |
 
