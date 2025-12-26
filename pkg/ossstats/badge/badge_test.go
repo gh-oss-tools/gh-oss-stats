@@ -29,6 +29,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 	tests := []struct {
 		name      string
 		style     BadgeStyle
+		variant   BadgeVariant
 		theme     BadgeTheme
 		wantWidth string
 		wantErr   bool
@@ -36,6 +37,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "summary_dark",
 			style:     StyleSummary,
+			variant:   VariantDefault,
 			theme:     ThemeGithubDark,
 			wantWidth: `width="400"`,
 			wantErr:   false,
@@ -43,6 +45,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "summary_light",
 			style:     StyleSummary,
+			variant:   VariantDefault,
 			theme:     ThemeGithubLight,
 			wantWidth: `width="400"`,
 			wantErr:   false,
@@ -50,6 +53,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "compact_dark",
 			style:     StyleCompact,
+			variant:   VariantDefault,
 			theme:     ThemeGithubDark,
 			wantWidth: `width="280"`,
 			wantErr:   false,
@@ -57,6 +61,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "compact_light",
 			style:     StyleCompact,
+			variant:   VariantDefault,
 			theme:     ThemeGithubLight,
 			wantWidth: `width="280"`,
 			wantErr:   false,
@@ -64,6 +69,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "detailed_dark",
 			style:     StyleDetailed,
+			variant:   VariantDefault,
 			theme:     ThemeGithubDark,
 			wantWidth: `width="900"`,
 			wantErr:   false,
@@ -71,6 +77,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "detailed_light",
 			style:     StyleDetailed,
+			variant:   VariantDefault,
 			theme:     ThemeGithubLight,
 			wantWidth: `width="900"`,
 			wantErr:   false,
@@ -78,6 +85,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "minimal_dark",
 			style:     StyleMinimal,
+			variant:   VariantDefault,
 			theme:     ThemeGithubDark,
 			wantWidth: `width="120"`,
 			wantErr:   false,
@@ -85,6 +93,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "minimal_light",
 			style:     StyleMinimal,
+			variant:   VariantDefault,
 			theme:     ThemeGithubLight,
 			wantWidth: `width="120"`,
 			wantErr:   false,
@@ -92,6 +101,7 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "summary_dracula",
 			style:     StyleSummary,
+			variant:   VariantDefault,
 			theme:     ThemeDracula,
 			wantWidth: `width="400"`,
 			wantErr:   false,
@@ -99,17 +109,51 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 		{
 			name:      "compact_nord",
 			style:     StyleCompact,
+			variant:   VariantDefault,
 			theme:     ThemeNord,
 			wantWidth: `width="280"`,
 			wantErr:   false,
+		},
+		{
+			name:      "detailed_nord",
+			style:     StyleDetailed,
+			variant:   VariantTextBased,
+			theme:     ThemeNord,
+			wantWidth: `width="720"`,
+			wantErr:   false,
+		},
+		{
+			name:      "compact_nord",
+			style:     StyleCompact,
+			variant:   VariantTextBased,
+			theme:     ThemeNord,
+			wantWidth: `width="720"`,
+			wantErr:   true,
+		},
+		{
+			name:      "summary_nord",
+			style:     StyleSummary,
+			variant:   VariantTextBased,
+			theme:     ThemeNord,
+			wantWidth: `width="720"`,
+			wantErr:   true,
+		},
+		{
+			name:      "minimal_nord",
+			style:     StyleMinimal,
+			variant:   VariantTextBased,
+			theme:     ThemeNord,
+			wantWidth: `width="720"`,
+			wantErr:   true,
 		},
 	}
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			opts := BadgeOptions{
-				Style: tt.style,
-				Theme: tt.theme,
+				Style:   tt.style,
+				Theme:   tt.theme,
+				Variant: tt.variant,
 			}
 
 			svg, err := RenderSVG(stats, opts)
@@ -135,8 +179,9 @@ func TestRenderSVG_AllStyles(t *testing.T) {
 
 func TestRenderSVG_NilStats(t *testing.T) {
 	opts := BadgeOptions{
-		Style: StyleSummary,
-		Theme: ThemeGithubDark,
+		Style:   StyleSummary,
+		Variant: VariantDefault,
+		Theme:   ThemeGithubDark,
 	}
 
 	_, err := RenderSVG(nil, opts)
@@ -164,8 +209,9 @@ func TestRenderSVG_EmptyContributions(t *testing.T) {
 	for _, style := range tests {
 		t.Run(string(style), func(t *testing.T) {
 			opts := BadgeOptions{
-				Style: style,
-				Theme: ThemeGithubDark,
+				Style:   style,
+				Variant: VariantDefault,
+				Theme:   ThemeGithubDark,
 			}
 
 			svg, err := RenderSVG(stats, opts)
@@ -188,8 +234,9 @@ func TestRenderSVG_InvalidStyle(t *testing.T) {
 	}
 
 	opts := BadgeOptions{
-		Style: BadgeStyle("invalid"),
-		Theme: ThemeGithubDark,
+		Style:   BadgeStyle("invalid"),
+		Variant: VariantDefault,
+		Theme:   ThemeGithubDark,
 	}
 
 	_, err := RenderSVG(stats, opts)
@@ -244,8 +291,9 @@ func TestRenderSVG_ThemeColors(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			opts := BadgeOptions{
-				Style: tt.style,
-				Theme: tt.theme,
+				Style:   tt.style,
+				Variant: VariantDefault,
+				Theme:   tt.theme,
 			}
 
 			svg, err := RenderSVG(stats, opts)
@@ -303,10 +351,11 @@ func TestRenderSVG_DetailedBadgeSorting(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			opts := BadgeOptions{
-				Style:  StyleDetailed,
-				Theme:  ThemeGithubDark,
-				SortBy: tt.sortBy,
-				Limit:  3,
+				Style:   StyleDetailed,
+				Variant: VariantDefault,
+				Theme:   ThemeGithubDark,
+				SortBy:  tt.sortBy,
+				Limit:   3,
 			}
 
 			svg, err := RenderSVG(stats, opts)
@@ -374,10 +423,11 @@ func TestRenderSVG_DetailedBadgeLimit(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			opts := BadgeOptions{
-				Style:  StyleDetailed,
-				Theme:  ThemeGithubDark,
-				SortBy: SortByPRs,
-				Limit:  tt.limit,
+				Style:   StyleDetailed,
+				Variant: VariantDefault,
+				Theme:   ThemeGithubDark,
+				SortBy:  SortByPRs,
+				Limit:   tt.limit,
 			}
 
 			svg, err := RenderSVG(stats, opts)
@@ -575,8 +625,9 @@ func TestRenderSVG_CompactBadgeContent(t *testing.T) {
 	}
 
 	opts := BadgeOptions{
-		Style: StyleCompact,
-		Theme: ThemeGithubDark,
+		Style:   StyleCompact,
+		Variant: VariantDefault,
+		Theme:   ThemeGithubDark,
 	}
 
 	svg, err := RenderSVG(stats, opts)
@@ -602,8 +653,9 @@ func TestRenderSVG_MinimalBadgeContent(t *testing.T) {
 	}
 
 	opts := BadgeOptions{
-		Style: StyleMinimal,
-		Theme: ThemeGithubDark,
+		Style:   StyleMinimal,
+		Variant: VariantDefault,
+		Theme:   ThemeGithubDark,
 	}
 
 	svg, err := RenderSVG(stats, opts)

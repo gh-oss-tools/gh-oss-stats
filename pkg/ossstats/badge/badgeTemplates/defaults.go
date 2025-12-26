@@ -1,7 +1,7 @@
-package badge
+package badgetemplates
 
 // summaryTemplate is the SVG template for the Summary badge style (400x200)
-const summaryTemplate = `<svg
+const DefaultSummary = `<svg
   width="400"
   height="200"
   viewBox="0 0 400 200"
@@ -87,7 +87,7 @@ const summaryTemplate = `<svg
 </svg>`
 
 // compactTemplate is the SVG template for the Compact badge style (280x28) - Shields.io style
-const compactTemplate = `<svg
+const DefaultCompact = `<svg
   width="280"
   height="32"
   viewBox="0 0 280 32"
@@ -129,7 +129,7 @@ const compactTemplate = `<svg
 </svg>`
 
 // minimalTemplate is the SVG template for the Minimal badge style (120x28)
-const minimalTemplate = `<svg
+const DefaultMinimal = `<svg
   width="120"
   height="32"
   viewBox="0 0 120 32"
@@ -171,7 +171,7 @@ const minimalTemplate = `<svg
 </svg>`
 
 // detailedTemplate is the SVG template for the Detailed badge style (400x320)
-const detailedTemplate = `
+const DefaultDetailed = `
 <svg
   width="900"
   height="{{add 278 (mul (div (add (len .TopContributions) 2) 3) 120)}}"
