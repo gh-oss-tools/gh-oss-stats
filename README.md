@@ -30,7 +30,7 @@ Track and display your merged PRs, commits, and contributions to external reposi
 | ![Default Detailed Dark](docs/badges/default-detailed-dark.svg) | ![Text Based Detailed Dark](docs/badges/text-based-detailed-dark.svg) |
 
 
-Check [All Combos](./docs/badges/BADGE_THEMES.md)
+Check [All Combos](docs/badges/BADGE_THEMES.md)
 
 
 ## Quick Start

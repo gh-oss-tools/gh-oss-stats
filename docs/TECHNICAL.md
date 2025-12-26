@@ -108,7 +108,7 @@ gh-oss-stats --user mabd-dev --badge --badge-style minimal
 | `detailed` | 400×320 | Summary + top N contributions with stars & PRs |
 | `minimal` | 120×28 | Simple project count badge |
 
-Check [All Combos](./docs/badges/BADGE_THEMES.md)
+Check [All Combos](/badges/BADGE_THEMES.md)
 
 **Example:**
 ```bash
