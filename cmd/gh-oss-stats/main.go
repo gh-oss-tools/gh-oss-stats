@@ -124,25 +124,25 @@ func main() {
 	// Validate badge options
 	badgeStyle, err := badge.BadgeStyleFromName(*badgeStyleStr)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, err.Error())
+		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
 	badgeVariant, err := badge.BadgeVariantFromName(*badgeVariantStr)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, err.Error())
+		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
 	badgeTheme, err := badge.BadgeThemeFromName(*badgeThemeStr)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, err.Error())
+		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
 	badgeSortBy, err := badge.SortByFromName(*badgeSortStr)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, err.Error())
+		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
