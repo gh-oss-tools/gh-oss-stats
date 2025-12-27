@@ -5,7 +5,7 @@
 **For auto-updating GitHub profile badges**, use our official GitHub Action:
 
 **Repository:** [mabd-dev/gh-oss-stats-action](https://github.com/mabd-dev/gh-oss-stats-action)
-**Marketplace:** [OSS Stats Badge Generator](https://github.com/marketplace/actions/oss-stats-badge-generator)
+**Marketplace:** [gh oss stats](https://github.com/marketplace/actions/gh-oss-stats)
 
 **Basic example:**
 
