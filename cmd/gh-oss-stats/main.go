@@ -214,42 +214,39 @@ func main() {
 		}
 	}
 
-	// Write JSON output
-	writeStats(output, verbose, stats)
-
-	// Generate badge if requested
-	if *generateBadge {
+	if strings.TrimSpace(*output) != "" {
+		writeStatsToFile(output, stats)
+		if *verbose {
+			fmt.Fprintf(os.Stderr, "Output written to %s\n", *output)
+		}
+	} else if *generateBadge {
 		if err := writeBadge(badgeStyle, badgeVariant, badgeTheme, badgeSortBy, badgeOutputStr, badgeLimit, verbose, stats); err != nil {
 			fmt.Fprintf(os.Stderr, "Error generating badge: %v\n", err)
 			os.Exit(1)
 		}
+	} else { // Write stats to stdout
+		jsonData := formatStats(*stats)
+		fmt.Println(string(jsonData))
 	}
 }
 
-func writeStats(
-	output *string,
-	verbose *bool,
-	stats *ossstats.Stats,
-) {
+func writeStatsToFile(output *string, stats *ossstats.Stats) {
+	jsonData := formatStats(*stats)
+
+	if err := os.WriteFile(*output, jsonData, 0644); err != nil {
+		fmt.Fprintf(os.Stderr, "Error writing to file: %v\n", err)
+		os.Exit(1)
+	}
+}
+
+func formatStats(stats ossstats.Stats) []byte {
 	jsonData, encodeErr := json.MarshalIndent(stats, "", "  ")
 
 	if encodeErr != nil {
 		fmt.Fprintf(os.Stderr, "Error encoding JSON: %v\n", encodeErr)
 		os.Exit(1)
 	}
-
-	// Write output
-	if *output != "" {
-		if err := os.WriteFile(*output, jsonData, 0644); err != nil {
-			fmt.Fprintf(os.Stderr, "Error writing to file: %v\n", err)
-			os.Exit(1)
-		}
-		if *verbose {
-			fmt.Fprintf(os.Stderr, "Output written to %s\n", *output)
-		}
-	} else {
-		fmt.Println(string(jsonData))
-	}
+	return jsonData
 }
 
 func writeBadge(
