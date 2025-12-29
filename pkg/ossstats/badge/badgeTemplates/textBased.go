@@ -60,7 +60,7 @@ const TextBasedSummary = `<svg
       }
       .stat-value {
         font-size: 28px;
-        font-weight: 700;
+        font-weight: 800;
         fill: {{.Colors.Text}};
       }
       .stat-label {
