@@ -33,7 +33,7 @@
 | Text Based  | Github Light | ![Detailed Light](text-based-detailed-light.svg) | X | ![Compact Light](text-based-compact-light.svg) |
 | Text Based  | Dracula | ![Detailed Dracula](text-based-detailed-dracula.svg) | X | ![Compact Dracula](text-based-compact-dracula.svg) |
 | Text Based  | Nord | ![Detailed Nord](text-based-detailed-nord.svg) | X | ![Compact Nord](text-based-compact-nord.svg) |
-| Text Based  | Gruvbox Dark | ![Detailed Gruvbox Dark](text-based-detailed-gruvbox-dark.svg) | X | ![Compact Gruvbox Dark](text-based-detailed-compact-dark.svg) |
-| Text Based  | Gruvbox Light | ![Detailed Gruvbox Light](text-based-detailed-gruvbox-light.svg) | X | ![Compact Gruvbox Light](text-based-detailed-compact-light.svg) |
+| Text Based  | Gruvbox Dark | ![Detailed Gruvbox Dark](text-based-detailed-gruvbox-dark.svg) | X | ![Compact Gruvbox Dark](text-based-compact-gruvbox-dark.svg) |
+| Text Based  | Gruvbox Light | ![Detailed Gruvbox Light](text-based-detailed-gruvbox-light.svg) | X | ![Compact Gruvbox Light](text-based-compact-gruvbox-light.svg) |
 
 
