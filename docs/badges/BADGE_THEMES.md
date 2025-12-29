@@ -14,6 +14,7 @@
   - **Theme:** Color scheme
   - **Detailed Style:** 900×360+ badge with stats and top repos
   - **Summary Style:** 400×200 badge with key metrics only
+  - **Compact Style:** 280x32 badge with key metrics only
 
   Choose based on:
   - **Aesthetic:** Modern (Default) vs Clean (Text-Based)
