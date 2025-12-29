@@ -32,6 +32,57 @@ const TextBasedCompact = `<svg
   </text>
 </svg>`
 
+// TextBasedSummary is the SVG template for the Summary badge style (400x200)
+const TextBasedSummary = `<svg
+  width="400"
+  height="200"
+  viewBox="0 0 400 200"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="Open Source Contribution Summary">
+  <defs>
+    <style>
+      text {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                     "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+      .bg {
+        fill: {{.Colors.Background}};
+      }
+      .username {
+        font-size: 18px;
+        font-weight: 700;
+        fill: {{.Colors.Text}};
+      }
+      .subtitle {
+        font-size: 11px;
+        fill: {{.Colors.TextSecondary}};
+      }
+      .stat-value {
+        font-size: 28px;
+        font-weight: 700;
+        fill: {{.Colors.Text}};
+      }
+      .stat-label {
+        font-size: 11px;
+        fill: {{.Colors.TextSecondary}};
+      }
+    </style>
+  </defs>
+  <!-- Background -->
+  <rect class="bg" width="400" height="200" rx="16"/>
+  <!-- Header -->
+  <text class="username" x="28" y="45">@{{.Stats.Username}}</text>
+  <text class="subtitle" x="28" y="62">Open Source Contributions</text>
+  <!-- Stats -->
+  <text class="stat-value" x="80" y="127" text-anchor="middle">{{.TotalProjects}}</text>
+  <text class="stat-label" x="80" y="141" text-anchor="middle">Projects</text>
+  <text class="stat-value" x="200" y="127" text-anchor="middle">{{.TotalPRs}}</text>
+  <text class="stat-label" x="200" y="141" text-anchor="middle">PRs Merged</text>
+  <text class="stat-value" x="320" y="127" text-anchor="middle">{{.TotalLines}}</text>
+  <text class="stat-label" x="320" y="141" text-anchor="middle">Lines Changed</text>
+</svg>`
+
 // textBasedDetailedTemplate is the SVG template for the Detailed badge style (400x320)
 const TextBasedDetailed = `
 	{{ $SVGHeight := add 300 (mul 56 (len .TopContributions)) }}
