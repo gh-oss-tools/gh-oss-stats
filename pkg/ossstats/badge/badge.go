@@ -161,6 +161,10 @@ func getTemplateStr(
 		}
 	case VariantTextBased:
 		switch style {
+		case StyleSummary:
+			return bt.TextBasedSummary, nil
+		case StyleCompact:
+			return bt.TextBasedCompact, nil
 		case StyleDetailed:
 			return bt.TextBasedDetailed, nil
 		}
