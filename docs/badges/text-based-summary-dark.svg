@@ -16,7 +16,7 @@
       }
       .username {
         font-size: 18px;
-        font-weight: 700;
+        font-weight: 800;
         fill: #e6edf3;
       }
       .subtitle {
@@ -41,9 +41,9 @@
   <text class="subtitle" x="28" y="62">Open Source Contributions</text>
   <!-- Stats -->
   <text class="stat-value" x="60" y="127" text-anchor="middle">7</text>
-  <text class="stat-label" x="60" y="141" text-anchor="middle">Projects</text>
+  <text class="stat-label" x="60" y="141" text-anchor="middle">PROJECTS</text>
   <text class="stat-value" x="180" y="127" text-anchor="middle">17</text>
-  <text class="stat-label" x="180" y="141" text-anchor="middle">PRs Merged</text>
+  <text class="stat-label" x="180" y="141" text-anchor="middle">PRs MERGED</text>
   <text class="stat-value" x="300" y="127" text-anchor="middle">2.9K</text>
-  <text class="stat-label" x="300" y="141" text-anchor="middle">Lines Changed</text>
+  <text class="stat-label" x="300" y="141" text-anchor="middle">LINES CHANGED</text>
 </svg>
