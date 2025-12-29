@@ -56,13 +56,13 @@ jobs:
       - uses: mabd-dev/gh-oss-stats-action@v0.1.0
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          badge-path: 'images/oss-badge.svg'
+          badge-output-path: 'oss-badge.svg'
 ```
 
 **Step 2:** Add the badge to your profile README:
 
 ```markdown
-![OSS Contributions](images/oss-badge.svg)
+![OSS Contributions](oss-badge.svg)
 ```
 
 **Done!** Your badge will auto-update weekly.
