@@ -34,7 +34,7 @@ func ExampleRenderSVG_summary() {
 	}
 
 	fmt.Printf("Generated summary badge (%d bytes)\n", len(svg))
-	// Output: Generated summary badge (1897 bytes)
+	// Output: Generated summary badge (1796 bytes)
 }
 
 func ExampleRenderSVG_compact() {
@@ -61,31 +61,7 @@ func ExampleRenderSVG_compact() {
 	}
 
 	fmt.Printf("Generated compact badge (%d bytes)\n", len(svg))
-	// Output: Generated compact badge (958 bytes)
-}
-
-func ExampleRenderSVG_minimal() {
-	stats := &ossstats.Stats{
-		Username: "mabd-dev",
-		Summary: ossstats.Summary{
-			TotalProjects: 42,
-		},
-	}
-
-	opts := badge.BadgeOptions{
-		Style:   badge.StyleMinimal,
-		Variant: badge.VariantDefault,
-		Theme:   badge.ThemeGithubDark,
-	}
-
-	svg, err := badge.RenderSVG(stats, opts)
-	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-		return
-	}
-
-	fmt.Printf("Generated minimal badge (%d bytes)\n", len(svg))
-	// Output: Generated minimal badge (920 bytes)
+	// Output: Generated compact badge (946 bytes)
 }
 
 func ExampleRenderSVG_detailed() {

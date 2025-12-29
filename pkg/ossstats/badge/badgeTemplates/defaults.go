@@ -8,83 +8,58 @@ const DefaultSummary = `<svg
   xmlns="http://www.w3.org/2000/svg"
   role="img"
   aria-label="Open Source Contribution Summary">
-
   <defs>
     <style>
       text {
         font-family: system-ui, -apple-system, BlinkMacSystemFont,
                      "Segoe UI", Helvetica, Arial, sans-serif;
       }
-
       .bg {
         fill: {{.Colors.Background}};
       }
-
       .card {
-        fill: url(#cardGradient);
-        stroke: {{.Colors.Border}};
-        stroke-width: 1;
-        rx: 14;
+        fill: {{.Colors.BackgroundAlt}};
       }
-
-      .title {
+      .username {
         font-size: 18px;
-        font-weight: 800;
+        font-style: italic;
+        font-weight: 700;
         fill: {{.Colors.Text}};
-        letter-spacing: -0.3px;
       }
-
       .subtitle {
         font-size: 12px;
         fill: {{.Colors.TextSecondary}};
       }
-
-      .label {
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        fill: {{.Colors.TextSecondary}};
-      }
-
-      .value {
+      .stat-value {
         font-size: 26px;
-        font-weight: 800;
+        font-style: italic;
+        font-weight: 700;
         fill: {{.Colors.Text}};
       }
+      .stat-label {
+        font-size: 11px;
+        fill: {{.Colors.TextSecondary}};
+      }
     </style>
-
-    <linearGradient id="cardGradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="{{.Colors.BackgroundAlt}}" stop-opacity="0.8" />
-      <stop offset="100%" stop-color="{{.Colors.BackgroundAlt}}" stop-opacity="0.6" />
-    </linearGradient>
   </defs>
-
   <!-- Background -->
-  <rect class="bg" x="0" y="0" width="400" height="200" rx="16"/>
-
-  <!-- Card -->
-  <rect class="card" x="12" y="12" width="376" height="176"/>
-
+  <rect class="bg" width="400" height="200" rx="16"/>
   <!-- Header -->
-  <text class="title" x="28" y="42">Open Source</text>
-  <text class="subtitle" x="28" y="62">@{{.Stats.Username}}</text>
-
+  <text class="username" x="28" y="42">@{{.Stats.Username}}</text>
+  <text class="subtitle" x="28" y="62">open source contributions</text>
+  <!-- Stat Cards -->
+  <rect class="card" x="22" y="91" width="108" height="70" rx="10"/>
+  <rect class="card" x="146" y="91" width="108" height="70" rx="10"/>
+  <rect class="card" x="270" y="91" width="108" height="70" rx="10"/>
   <!-- Stats -->
-  <g transform="translate(28, 98)">
-    <text class="value">{{.TotalProjects}}</text>
-    <text class="label" y="20">Projects</text>
-  </g>
-
-  <g transform="translate(210, 98)">
-    <text class="value">{{.TotalPRs}}</text>
-    <text class="label" y="20">PRs Merged</text>
-  </g>
-
-  <g transform="translate(28, 148)">
-    <text class="value">{{.TotalLines}}</text>
-    <text class="label" y="20">Lines Changed</text>
-  </g>
-</svg>`
+  <text class="stat-value" x="76" y="123" text-anchor="middle">{{.TotalProjects}}</text>
+  <text class="stat-label" x="76" y="144" text-anchor="middle">PROJECTS</text>
+  <text class="stat-value" x="200" y="123" text-anchor="middle">{{.TotalPRs}}</text>
+  <text class="stat-label" x="200" y="144" text-anchor="middle">PRS MERGED</text>
+  <text class="stat-value" x="324" y="123" text-anchor="middle">{{.TotalLines}}</text>
+  <text class="stat-label" x="324" y="144" text-anchor="middle">LINES CHANGED</text>
+</svg>
+`
 
 // compactTemplate is the SVG template for the Compact badge style (280x28) - Shields.io style
 const DefaultCompact = `<svg
@@ -106,7 +81,7 @@ const DefaultCompact = `<svg
       }
 
       .card {
-        fill: url(#badgeGradient);
+        fill: {{.Colors.Background}};
         stroke: {{.Colors.Border}};
         stroke-width: 1;
         rx: 16;
@@ -125,48 +100,6 @@ const DefaultCompact = `<svg
   <!-- Text -->
   <text x="140" y="21" text-anchor="middle">
     OSS · {{.CompactText}}
-  </text>
-</svg>`
-
-// minimalTemplate is the SVG template for the Minimal badge style (120x28)
-const DefaultMinimal = `<svg
-  width="120"
-  height="32"
-  viewBox="0 0 120 32"
-  xmlns="http://www.w3.org/2000/svg"
-  role="img"
-  aria-label="OSS">
-
-  <defs>
-    <style>
-      text {
-        font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                     "Segoe UI", Helvetica, Arial, sans-serif;
-        fill: {{.Colors.Text}};
-        font-size: 12px;
-        font-weight: 800;
-      }
-
-      .card {
-        fill: url(#miniGradient);
-        stroke: {{.Colors.Border}};
-        stroke-width: 1;
-        rx: 16;
-      }
-    </style>
-
-    <linearGradient id="miniGradient" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="{{.Colors.Accent}}" stop-opacity="0.95"/>
-      <stop offset="100%" stop-color="{{.Colors.Accent}}" stop-opacity="0.75"/>
-    </linearGradient>
-  </defs>
-
-  <!-- Background -->
-  <rect class="card" x="0" y="0" width="120" height="32"/>
-
-  <!-- Text -->
-  <text x="60" y="21" text-anchor="middle">
-    {{.MinimalText}}
   </text>
 </svg>`
 
