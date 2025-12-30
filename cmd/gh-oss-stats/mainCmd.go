@@ -30,15 +30,6 @@ var (
 	verboseShort = flag.Bool("v", false, "Verbose logging (short)")
 	timeoutSec   = flag.Int("timeout", int(ossstats.DefaultTimeout.Seconds()), "Timeout in seconds")
 	debug        = flag.Bool("debug", false, "Uses fake data when true")
-
-	// Badge generation flags
-	generateBadge   = flag.Bool("badge", false, "Generate SVG badge")
-	badgeStyleStr   = flag.String("badge-style", string(badge.DefaultBadgeStyle), "Badge style: summary, compact, detailed")
-	badgeVariantStr = flag.String("badge-variant", string(badge.DefaultBadgeVariant), "Badge variants: default, text-based")
-	badgeThemeStr   = flag.String("badge-theme", string(badge.DefaultBadgeTheme), "Badge theme: dark, light, nord, dracula, ...")
-	badgeOutputStr  = flag.String("badge-output", "", "Badge output file (default: badge.svg)")
-	badgeSortStr    = flag.String("badge-sort", string(badge.DefaultSortBy), "Sort contributions by: prs, stars, commits (for detailed badge)")
-	badgeLimit      = flag.Int("badge-limit", badge.DefaultPRsLimit, "Number of contributions to show (for detailed badge)")
 )
 
 func runMainCmd() {
@@ -72,8 +63,8 @@ func runMainCmd() {
 		fmt.Fprintf(os.Stderr, "Error: --max-prs must be > 0 (got: %d)\n\n", *maxPRs)
 		os.Exit(1)
 	}
-	if *badgeLimit <= 0 {
-		fmt.Fprintf(os.Stderr, "Error: --badge-limit must be > 0 (got: %d)\n\n", *badgeLimit)
+	if badgeConfig.limit <= 0 {
+		fmt.Fprintf(os.Stderr, "Error: --badge-limit must be > 0 (got: %d)\n\n", badgeConfig.limit)
 		os.Exit(1)
 	}
 	if *timeoutSec <= 0 {
@@ -82,25 +73,25 @@ func runMainCmd() {
 	}
 
 	// Validate badge options
-	badgeStyle, err := badge.BadgeStyleFromName(*badgeStyleStr)
+	badgeStyle, err := badge.BadgeStyleFromName(badgeConfig.style)
 	if err != nil {
 		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
-	badgeVariant, err := badge.BadgeVariantFromName(*badgeVariantStr)
+	badgeVariant, err := badge.BadgeVariantFromName(badgeConfig.variant)
 	if err != nil {
 		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
-	badgeTheme, err := badge.BadgeThemeFromName(*badgeThemeStr)
+	badgeTheme, err := badge.BadgeThemeFromName(badgeConfig.theme)
 	if err != nil {
 		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
 	}
 
-	badgeSortBy, err := badge.SortByFromName(*badgeSortStr)
+	badgeSortBy, err := badge.SortByFromName(badgeConfig.sort)
 	if err != nil {
 		fmt.Fprint(os.Stderr, err.Error())
 		os.Exit(1)
@@ -179,8 +170,8 @@ func runMainCmd() {
 		if *verbose {
 			fmt.Fprintf(os.Stderr, "Output written to %s\n", *output)
 		}
-	} else if *generateBadge {
-		if err := writeBadge(badgeStyle, badgeVariant, badgeTheme, badgeSortBy, badgeOutputStr, badgeLimit, verbose, stats); err != nil {
+	} else if badgeConfig.generate {
+		if err := writeBadge(badgeStyle, badgeVariant, badgeTheme, badgeSortBy, badgeConfig.output, badgeConfig.limit, verbose, stats); err != nil {
 			fmt.Fprintf(os.Stderr, "Error generating badge: %v\n", err)
 			os.Exit(1)
 		}
@@ -214,8 +205,8 @@ func writeBadge(
 	variant badge.BadgeVariant,
 	theme badge.BadgeTheme,
 	sortBy badge.SortBy,
-	output *string,
-	limit *int,
+	output string,
+	limit int,
 	verbose *bool,
 	stats *ossstats.Stats,
 ) error {
@@ -226,7 +217,7 @@ func writeBadge(
 		Variant: variant,
 		Theme:   theme,
 		SortBy:  sortBy,
-		Limit:   *limit,
+		Limit:   limit,
 	}
 
 	// Generate SVG
@@ -236,7 +227,7 @@ func writeBadge(
 	}
 
 	// Determine output file
-	outputFile := *output
+	outputFile := output
 	if outputFile == "" {
 		outputFile = "badge.svg"
 	}
