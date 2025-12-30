@@ -70,6 +70,15 @@ jobs:
 
 **Done!** Your badge will auto-update weekly.
 
+### Run it manually
+If you don't want to wait for the end of the week, you can run this action manually
+1. G to `your github repo`
+2. Click `actions` tab
+3. On the left side, you shouls see your action named `Generate OSS Badge`, click on it
+4. Click on `run workflow` drop down, then click `run workflow`
+
+That is it. It will run and generate the badge for you.
+
 **Full documentation and examples:** [mabd-dev/gh-oss-stats-action](https://github.com/mabd-dev/gh-oss-stats-action)
 
 ---
