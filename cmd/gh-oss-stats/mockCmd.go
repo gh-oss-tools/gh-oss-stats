@@ -7,6 +7,8 @@ import (
 
 var mockCmd = flag.NewFlagSet("mock", flag.ExitOnError)
 
-func runMockCmd() {
+func runMockCmd(args []string) {
+	badgeConfig.registerBadgeFlags(mockCmd)
+	mockCmd.Parse(args)
 	fmt.Println("Mockkkkkkkkkkkkkkk ")
 }

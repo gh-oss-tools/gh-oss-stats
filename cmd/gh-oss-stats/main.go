@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 
@@ -22,31 +21,20 @@ func main() {
 	}
 
 	if len(os.Args) < 2 {
-		mainCmd()
+		runMainCmd(os.Args[1:])
 		return
 	}
 
 	switch os.Args[1] {
 	case "json":
-		badgeConfig.registerBadgeFlags(fromJSONCmd)
-		fromJSONCmd.Parse(os.Args[2:])
-		runJSONCmd()
+		runJSONCmd(os.Args[2:])
 	case "mock":
-		badgeConfig.registerBadgeFlags(mockCmd)
-		mockCmd.Parse(os.Args[2:])
-		runMockCmd()
+		runMockCmd(os.Args[2:])
 	case "version":
 		fmt.Printf("gh-oss-stats v%s\n", version)
 		os.Exit(0)
 	default:
-		mainCmd()
+		runMainCmd(os.Args[1:])
 		os.Exit(0)
 	}
-}
-
-func mainCmd() {
-	badgeConfig.registerBadgeFlags(flag.CommandLine)
-	flag.Parse()
-	//flag.CommandLine.Parse(os.Args[1:])
-	runMainCmd()
 }

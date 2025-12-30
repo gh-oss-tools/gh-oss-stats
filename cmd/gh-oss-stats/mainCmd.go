@@ -32,7 +32,10 @@ var (
 	debug        = flag.Bool("debug", false, "Uses fake data when true")
 )
 
-func runMainCmd() {
+func runMainCmd(args []string) {
+	badgeConfig.registerBadgeFlags(flag.CommandLine)
+	flag.Parse()
+
 	// Merge short and long flags
 	if *userShort != "" {
 		username = userShort
