@@ -40,8 +40,9 @@ func runBadgeCmd(args []string) {
 	badgeConfig.registerBadgeFlags(badgeCmd)
 	badgeCmd.Parse(args)
 
-	if strings.TrimSpace(*badgeFromFile) != "" {
-		content, err := os.ReadFile(strings.TrimSpace(*badgeFromFile))
+	*badgeFromFile = strings.TrimSpace(*badgeFromFile)
+	if *badgeFromFile != "" {
+		content, err := os.ReadFile(*badgeFromFile)
 		if err != nil {
 			fmt.Fprintf(os.Stderr, "Error: %v\n", err)
 			os.Exit(1)
@@ -49,8 +50,9 @@ func runBadgeCmd(args []string) {
 		generateBadgeFromJSONString(string(content), *badgeConfig)
 	}
 
-	if strings.TrimSpace(*badgeData) != "" {
-		generateBadgeFromJSONString(strings.TrimSpace(*badgeData), *badgeConfig)
+	*badgeData = strings.TrimSpace(*badgeData)
+	if *badgeData != "" {
+		generateBadgeFromJSONString(*badgeData, *badgeConfig)
 	}
 
 	fmt.Fprintln(os.Stderr, "Error: badgeFromFile or data has to be provided")
