@@ -29,7 +29,6 @@ var (
 	verbose      = flag.Bool("verbose", false, "Verbose logging to stderr")
 	verboseShort = flag.Bool("v", false, "Verbose logging (short)")
 	timeoutSec   = flag.Int("timeout", int(ossstats.DefaultTimeout.Seconds()), "Timeout in seconds")
-	debug        = flag.Bool("debug", false, "Uses fake data when true")
 
 	generateBadge = flag.Bool("badge", false, "Generate SVG badge")
 )
@@ -124,7 +123,6 @@ func runMainCmd(args []string) {
 		ossstats.WithMinStars(*minStars),
 		ossstats.WithMaxPRs(*maxPRs),
 		ossstats.WithTimeout(time.Duration(*timeoutSec) * time.Second),
-		ossstats.WithDebug(*debug),
 	}
 
 	if *token != "" {
