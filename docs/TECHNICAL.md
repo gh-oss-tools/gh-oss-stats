@@ -385,13 +385,13 @@ gh-oss-stats/
 ├── cmd/gh-oss-stats/           # CLI entry point
 ├── pkg/ossstats/               # Public API (importable)
 │   ├── badge/                  # Badge generation folder
-    │   ├── badgeTemplates/     # Defines all badge svg templates
-    │   ├── badge.go            # Generate and save badge
-    │   ├── badgeSortBy.go      # Defines sorting types
-    │   ├── badgeStyle.go       # Defines all badge styles + helper function
-    │   ├── badgeTheme.go       # Defines all badge themes + helper function
-    │   ├── badgeVariant.go     # Defines all badge variants + helper function
-    │   └── types.go            # Client + New()
+│   │   ├── badgeTemplates/     # Defines all badge svg templates
+│   │   ├── badge.go            # Generate and save badge
+│   │   ├── badgeSortBy.go      # Defines sorting types
+│   │   ├── badgeStyle.go       # Defines all badge styles + helper function
+│   │   ├── badgeTheme.go       # Defines all badge themes + helper function
+│   │   ├── badgeVariant.go     # Defines all badge variants + helper function
+│   │   └── types.go            # Client + New()
 │   ├── client.go               # Client + New()
 │   ├── contributions.go        # GetContributions() logic
 │   ├── types.go                # Exported types
